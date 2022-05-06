@@ -33,22 +33,22 @@ fi
 export JULIA_DEPOT_PATH="$MyDepot"
 
 # Expand the other zip files
-if [ ! -d assets/gnuplot ] ; then
-    if [ ! -f ./assets/gnuplot.zip ] ; then
-        echo "Downloading gnuplot"
-        curl http://tmacchant33.starfree.jp/gnuplot_files/gp550-20220416-win64-mingw.zip --output ./assets/gnuplot.zip
-    fi
-    echo Installing gnuplot 
-    cd assets
-    unzip -q ./gnuplot.zip
-    cd ..
-fi
+# if [ ! -d assets/gnuplot ] ; then
+#     if [ ! -f ./assets/gnuplot.zip ] ; then
+#         echo "Downloading gnuplot"
+#         curl http://tmacchant33.starfree.jp/gnuplot_files/gp550-20220416-win64-mingw.zip --output ./assets/gnuplot.zip
+#     fi
+#     echo Installing gnuplot 
+#     cd assets
+#     unzip -q ./gnuplot.zip
+#     cd ..
+# fi
 
 # Make sure we can start Julia just by referring to the program name.
 export PATH="$(pwd)"/assets/$MyPortableJulia/bin:$PATH
 
 # Make sure we can start gnuplot just by referring to the program name.
-export PATH="$(pwd)"/assets/gnuplot/bin:$PATH
+# export PATH="$(pwd)"/assets/gnuplot/bin:$PATH
 
 # Add the Git binary
 export PATH="$(pwd)"/assets/PortableGit/bin:$PATH
