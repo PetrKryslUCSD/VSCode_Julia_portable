@@ -54,17 +54,19 @@ export PATH="$(pwd)"/assets/$MyPortableJulia/bin:$PATH
 export PATH="$(pwd)"/assets/PortableGit/bin:$PATH
 
 # Download, and instantiate the tutorial packages, in order to bring Julia depot up-to-date 
-echo "Activating/instantiating a package"
-for n in JuliaTutorial
-do 
-    if [ ! -d $n ] ; then
-        echo "Activating and instantiating $n"
-        git clone https://github.com/PetrKryslUCSD/$n.git
-    fi
-    cd $n
-    julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate(); Pkg.precompile(); exit()'
-    cd ..
-done
+if [ ! -d JuliaTutorial ] ; then
+    echo "Activating/instantiating a package"
+    for n in JuliaTutorial
+    do 
+        if [ ! -d $n ] ; then
+            echo "Activating and instantiating $n"
+            git clone https://github.com/PetrKryslUCSD/$n.git
+        fi
+        cd $n
+        julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate(); Pkg.precompile(); exit()'
+        cd ..
+    done
+fi
 
 # Make sure the Julia REPL when started activates/instantiates
 if [ ! -f "$MyDepot"/config/startup.jl ] ; then
@@ -121,10 +123,13 @@ else
 fi
 
 # Install required extensions
-assets/VSCode/bin/code --install-extension alefragnani.Bookmarks --force
-assets/VSCode/bin/code --install-extension julialang.language-julia --force
-assets/VSCode/bin/code --install-extension kaiwood.center-editor-window --force
-assets/VSCode/bin/code --install-extension stkb.rewrap --force
+if [ ! -f assets/firsttimedone ]
+    assets/VSCode/bin/code --install-extension alefragnani.Bookmarks --force
+    assets/VSCode/bin/code --install-extension julialang.language-julia --force
+    assets/VSCode/bin/code --install-extension kaiwood.center-editor-window --force
+    assets/VSCode/bin/code --install-extension stkb.rewrap --force
+    touch assets/firsttimedone
+fi
 
 # Start VS Code
 echo "Starting editor"
