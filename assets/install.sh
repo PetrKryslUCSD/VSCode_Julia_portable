@@ -123,7 +123,7 @@ else
 fi
 
 # Install required extensions
-if [ ! -f assets/firsttimedone ]
+if [ ! -f assets/firsttimedone ] ; then
     assets/VSCode/bin/code --install-extension alefragnani.Bookmarks --force
     assets/VSCode/bin/code --install-extension julialang.language-julia --force
     assets/VSCode/bin/code --install-extension kaiwood.center-editor-window --force
