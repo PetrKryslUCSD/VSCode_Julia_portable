@@ -112,7 +112,7 @@ if [ ! -x "$(pwd)"/assets/VSCode/Code ] ; then
     fi
     if [ ! -f assets/"$VSCodeVersion" ] ; then
         echo "Downloading VSCode "
-        curl "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user" --output assets/"$VSCodeVersion"
+        curl "https://update.code.visualstudio.com/latest/win32-x64-archive/stable" --output assets/"$VSCodeVersion"
         # curl https://az764295.vo.msecnd.net/stable/dfd34e8260c270da74b5c2d86d61aee4b6d56977/"$VSCodeVersion" --output assets/"$VSCodeVersion"
     fi
     echo "Expanding $VSCodeVersion"
