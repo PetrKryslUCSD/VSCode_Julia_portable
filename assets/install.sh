@@ -106,13 +106,14 @@ if [ ! -d "$MyDepot"/config ] ; then
 fi
 
 if [ ! -x "$(pwd)"/assets/VSCode/Code ] ; then
-    VSCodeVersion="VSCode-win32-x64-1.66.2.zip"
+    VSCodeVersion="VSCode.zip"
     if [ ! -d assets/VSCode ] ; then
         mkdir assets/VSCode
     fi
     if [ ! -f assets/"$VSCodeVersion" ] ; then
         echo "Downloading VSCode "
-        curl https://az764295.vo.msecnd.net/stable/dfd34e8260c270da74b5c2d86d61aee4b6d56977/"$VSCodeVersion" --output assets/"$VSCodeVersion"
+        curl "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user" --output assets/"$VSCodeVersion"
+        # curl https://az764295.vo.msecnd.net/stable/dfd34e8260c270da74b5c2d86d61aee4b6d56977/"$VSCodeVersion" --output assets/"$VSCodeVersion"
     fi
     echo "Expanding $VSCodeVersion"
     unzip -q "assets/$VSCodeVersion" -d assets/VSCode
