@@ -112,8 +112,9 @@ if [ ! -x "$(pwd)"/assets/VSCode/Code ] ; then
     fi
     if [ ! -f assets/"$VSCodeVersion" ] ; then
         echo "Downloading VSCode "
-        curl "https://update.code.visualstudio.com/latest/win32-x64-archive/stable" --output assets/"$VSCodeVersion"
-        # curl https://az764295.vo.msecnd.net/stable/dfd34e8260c270da74b5c2d86d61aee4b6d56977/"$VSCodeVersion" --output assets/"$VSCodeVersion"
+        curl "https://update.code.visualstudio.com/latest/win32-x64-archive/stable" --output assets/vscode.redirect
+        download_link=$(cat assets/vscode.redirect | cut -d" " -f4)
+        curl "$download_link" --output assets/"$VSCodeVersion"
     fi
     echo "Expanding $VSCodeVersion"
     unzip -q "assets/$VSCodeVersion" -d assets/VSCode
