@@ -6,8 +6,9 @@ set -o errexit
 set -o nounset
 
 # Select the version of julia to run
-MyPortableJuliaMajorVersion=1.7
-MyPortableJulia=julia-$MyPortableJuliaMajorVersion.2
+MyPortableJuliaMajorVersion=1.8
+MyPortableJuliaMinorVersion=.0-rc1 #.2
+MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 # Make sure we are in the folder in which the portable Julia is installed.
 if [ ! -d "$(pwd)"/assets/$MyPortableJulia ] ; then
