@@ -7,7 +7,7 @@ set -o nounset
 
 # Select the version of julia to run
 MyPortableJuliaMajorVersion=1.8
-MyPortableJuliaMinorVersion=.0-rc1 #.2
+MyPortableJuliaMinorVersion=.4 # can be used to also select release candidate
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 # Make sure we are in the folder in which the portable Julia is installed.
