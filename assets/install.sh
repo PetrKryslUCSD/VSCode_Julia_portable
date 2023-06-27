@@ -1,13 +1,13 @@
 #
 
 # Installation script for portable Julia with VS Code
-# version 1.0 (C) 2022, Petr Krysl
+# version 1.0 (C) 2022-2023, Petr Krysl
 set -o errexit 
 set -o nounset
 
 # Select the version of julia to run
-MyPortableJuliaMajorVersion=1.8
-MyPortableJuliaMinorVersion=.4 # can be used to also select release candidate
+MyPortableJuliaMajorVersion=1.9
+MyPortableJuliaMinorVersion=.0 # can be used to also select release candidate
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 # Make sure we are in the folder in which the portable Julia is installed.
