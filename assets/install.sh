@@ -6,8 +6,8 @@ set -o errexit
 set -o nounset
 
 # Select the version of julia to run
-MyPortableJuliaMajorVersion=1.10
-MyPortableJuliaMinorVersion=.0-rc1 # can be used to also select release candidate
+MyPortableJuliaMajorVersion=1.9
+MyPortableJuliaMinorVersion=.3 # can be used to also select release candidate
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 # Make sure we are in the folder in which the portable Julia is installed.
