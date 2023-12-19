@@ -7,7 +7,7 @@ set -o nounset
 
 # Select the version of julia to run
 MyPortableJuliaMajorVersion=1.9
-MyPortableJuliaMinorVersion=.3 # can be used to also select release candidate
+MyPortableJuliaMinorVersion=.4 # can be used to also select release candidate
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 # Make sure we are in the folder in which the portable Julia is installed.
@@ -98,12 +98,6 @@ Base.show(io::IO, f::Float64) = @printf(io, "%1.5e", f)
 Base.show(io::IO, f::Float32) = @printf(io, "%1.5e", f)
 Base.show(io::IO, f::Float16) = @printf(io, "%1.5e", f)
 EOF
-fi
-
-# Configure Julia to activate/instantiate opened project
-if [ ! -d "$MyDepot"/config ] ; then
-    mkdir "$MyDepot"/config
-    touch "$MyDepot"/config/startup.jl
 fi
 
 if [ ! -x "$(pwd)"/assets/VSCode/Code ] ; then
