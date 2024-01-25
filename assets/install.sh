@@ -55,19 +55,19 @@ export PATH="$(pwd)"/assets/$MyPortableJulia/bin:$PATH
 export PATH="$(pwd)"/assets/PortableGit/bin:$PATH
 
 # Download, and instantiate the tutorial packages, in order to bring Julia depot up-to-date 
-if [ ! -d JuliaTutorial ] ; then
-    echo "Activating/instantiating a package"
-    for n in JuliaTutorial
-    do 
-        if [ ! -d $n ] ; then
-            echo "Activating and instantiating $n"
-            git clone https://github.com/PetrKryslUCSD/$n.git
-        fi
-        cd $n
-        julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate(); Pkg.precompile(); exit()'
-        cd ..
-    done
-fi
+# if [ ! -d JuliaTutorial ] ; then
+#     echo "Activating/instantiating a package"
+#     for n in JuliaTutorial
+#     do 
+#         if [ ! -d $n ] ; then
+#             echo "Activating and instantiating $n"
+#             git clone https://github.com/PetrKryslUCSD/$n.git
+#         fi
+#         cd $n
+#         julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate(); Pkg.precompile(); exit()'
+#         cd ..
+#     done
+# fi
 
 # Make sure the Julia REPL when started activates/instantiates
 if [ ! -f "$MyDepot"/config/startup.jl ] ; then
@@ -131,4 +131,4 @@ fi
 
 # Start VS Code
 echo "Starting editor"
-assets/VSCode/Code -a JuliaTutorial
+assets/VSCode/Code 
