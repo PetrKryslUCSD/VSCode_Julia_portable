@@ -79,19 +79,19 @@ cat<<EOF >> "$MyDepot/config/startup.jl"
 using Pkg 
 # Disable updating registry on add (still runs on up), as it is slow
 Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
-if isfile("Project.toml") && isfile("Manifest.toml")
-   Pkg.activate(".") 
-   Pkg.instantiate()
-end
-import Pkg; Pkg.add("Revise")
+# if isfile("Project.toml") && isfile("Manifest.toml")
+#    Pkg.activate(".") 
+#    Pkg.instantiate()
+# end
+# import Pkg; Pkg.add("Revise")
 # Setup Revise.jl
-atreplinit() do repl
-    try
-        @eval using Revise
-    catch err
-        println("Error starting Revise \$err")
-    end
-end
+# atreplinit() do repl
+#     try
+#         @eval using Revise
+#     catch err
+#         println("Error starting Revise \$err")
+#     end
+# end
 # Better format for floats
 using Printf 
 Base.show(io::IO, f::Float64) = @printf(io, "%1.5e", f)
