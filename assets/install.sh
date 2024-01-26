@@ -126,6 +126,7 @@ if [ ! -f assets/firsttimedone ] ; then
     assets/VSCode/bin/code --install-extension julialang.language-julia --force
     assets/VSCode/bin/code --install-extension kaiwood.center-editor-window --force
     assets/VSCode/bin/code --install-extension stkb.rewrap --force
+    assets/VSCode/bin/code --install-extension yeannylam.recenter-top-bottom --force
     touch assets/firsttimedone
 fi
 
