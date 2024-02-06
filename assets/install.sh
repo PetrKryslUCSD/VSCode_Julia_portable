@@ -121,7 +121,9 @@ fi
 
 # Install required extensions
 if [ ! -f assets/firsttimedone ] ; then
-    mkdir assets/VSCode/data
+    if [ ! -d assets/VSCode/data ] ; then
+	mkdir assets/VSCode/data
+    fi
     assets/VSCode/bin/code --install-extension alefragnani.Bookmarks --force
     assets/VSCode/bin/code --install-extension julialang.language-julia --force
     assets/VSCode/bin/code --install-extension kaiwood.center-editor-window --force
