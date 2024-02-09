@@ -129,6 +129,9 @@ if [ ! -f assets/firsttimedone ] ; then
     assets/VSCode/bin/code --install-extension kaiwood.center-editor-window --force
     assets/VSCode/bin/code --install-extension stkb.rewrap --force
     assets/VSCode/bin/code --install-extension yeannylam.recenter-top-bottom --force
+    assets/VSCode/bin/code --install-extension nemesv.copy-file-name --force
+    assets/VSCode/bin/code --install-extension PKief.material-icon-theme --force
+    assets/VSCode/bin/code --install-extension johnpapa.vscode-peacock --force
     touch assets/firsttimedone
 fi
 
