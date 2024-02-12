@@ -79,19 +79,27 @@ cat<<EOF >> "$MyDepot/config/startup.jl"
 using Pkg 
 # Disable updating registry on add (still runs on up), as it is slow
 Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
-# if isfile("Project.toml") && isfile("Manifest.toml")
-#    Pkg.activate(".") 
-#    Pkg.instantiate()
-# end
-# import Pkg; Pkg.add("Revise")
-# Setup Revise.jl
-# atreplinit() do repl
-#     try
-#         @eval using Revise
-#     catch err
-#         println("Error starting Revise \$err")
-#     end
-# end
+# Globally useful packages
+import Pkg; Pkg.add("Revise")
+import Pkg; Pkg.add("JuliaFormatter")
+# Setup global packages
+atreplinit() do repl
+    try
+        @eval using Revise
+    catch err
+        println("Error starting Revise: \$err")
+    end
+    try
+        @eval using JuliaFormatter
+    catch err
+        println("Error starting JuliaFormatter: \$err")
+    end
+end
+# Is this a project environment?
+if isfile("Project.toml") && isfile("Manifest.toml")
+   Pkg.activate(".") 
+   Pkg.instantiate()
+end
 # Better format for floats
 using Printf 
 Base.show(io::IO, f::Float64) = @printf(io, "%1.5e", f)
