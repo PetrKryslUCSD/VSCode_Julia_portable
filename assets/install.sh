@@ -80,21 +80,21 @@ using Pkg
 # Disable updating registry on add (still runs on up), as it is slow
 Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
 # Globally useful packages
-import Pkg; Pkg.add("Revise")
-import Pkg; Pkg.add("JuliaFormatter")
+# import Pkg; Pkg.add("Revise")
+# import Pkg; Pkg.add("JuliaFormatter")
 # Setup global packages
-atreplinit() do repl
-    try
-        @eval using Revise
-    catch err
-        println("Error starting Revise: \$err")
-    end
-    try
-        @eval using JuliaFormatter
-    catch err
-        println("Error starting JuliaFormatter: \$err")
-    end
-end
+# atreplinit() do repl
+#     try
+#         @eval using Revise
+#     catch err
+#         println("Error starting Revise: \$err")
+#     end
+#     try
+#         @eval using JuliaFormatter
+#     catch err
+#         println("Error starting JuliaFormatter: \$err")
+#     end
+# end
 # Is this a project environment?
 if isfile("Project.toml") && isfile("Manifest.toml")
    Pkg.activate(".") 
