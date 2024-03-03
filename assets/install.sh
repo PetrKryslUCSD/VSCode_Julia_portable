@@ -1,13 +1,30 @@
 #
 
 # Installation script for portable Julia with VS Code
-# version 1.0 (C) 2022-2023, Petr Krysl
+# version 1.1 (C) 2022-2024, Petr Krysl
+
+# Further configuration options for VS Code:
+# {
+#    "key": "ctrl+c",
+#    "command": "workbench.action.terminal.copySelection",
+#    "when": "terminalFocus && terminalProcessSupported && terminalTextSelected"
+# },
+# {
+#    "key": "ctrl+v",
+#    "command": "workbench.action.terminal.paste",
+#    "when": "terminalFocus && terminalProcessSupported"
+# },
+# and make sure that this setting is an effect
+# {
+#     "terminal.integrated.allowChords": false
+# }
+
 set -o errexit 
 set -o nounset
 
 # Select the version of julia to run
 MyPortableJuliaMajorVersion=1.10
-MyPortableJuliaMinorVersion=.0 # can be used to also select release candidate
+MyPortableJuliaMinorVersion=.2 # can be used to also select release candidate
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 # Make sure we are in the folder in which the portable Julia is installed.
