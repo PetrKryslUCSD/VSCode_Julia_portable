@@ -92,6 +92,8 @@ if [ ! -f "$MyDepot"/config/startup.jl ] ; then
                 mkdir "$MyDepot"/config
         fi
         touch "$MyDepot"/config/startup.jl
+        # Make sure Revise is present in the default environment
+        julia -E 'import Pkg; Pkg.add("Revise")'
 cat<<EOF >> "$MyDepot/config/startup.jl"
 using Pkg 
 # Disable updating registry on add (still runs on up), as it is slow
