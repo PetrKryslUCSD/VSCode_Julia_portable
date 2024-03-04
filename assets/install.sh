@@ -96,6 +96,7 @@ cat<<EOF >> "$MyDepot/config/startup.jl"
 using Pkg 
 # Disable updating registry on add (still runs on up), as it is slow
 Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
+# The below would only be useful when not using VS Code: running REPL in VS Code does it automatically
 # Globally useful packages
 # import Pkg; Pkg.add("Revise")
 # import Pkg; Pkg.add("JuliaFormatter")
@@ -113,10 +114,10 @@ Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
 #     end
 # end
 # Is this a project environment?
-if isfile("Project.toml") && isfile("Manifest.toml")
-   Pkg.activate(".") 
-   Pkg.instantiate()
-end
+# if isfile("Project.toml") && isfile("Manifest.toml")
+#    Pkg.activate(".") 
+#    Pkg.instantiate()
+# end
 # Better format for floats
 using Printf 
 Base.show(io::IO, f::Float64) = @printf(io, "%1.5e", f)
