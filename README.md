@@ -117,7 +117,7 @@ Status `FinEtoolsAcoustics.jl\examples\Project.toml`
 ...
 ```
 
-When we switch to this environment in VSCode,
+When we switch to this environment in VSCode (use `"File: Open Folder"`),
 IntelliSense for the code in the package `FinEtoolsAcoustics.jl` is enabled.
 Without these separate environments, the functionality in  the package
 `FinEtoolsAcoustics.jl` would not be visible to the LSP server, and IntelliSense
