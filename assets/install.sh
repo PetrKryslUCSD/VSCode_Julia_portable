@@ -24,7 +24,7 @@ set -o nounset
 
 # Select the version of julia to run
 MyPortableJuliaMajorVersion=1.10
-MyPortableJuliaMinorVersion=.2 # can be used to also select release candidate
+MyPortableJuliaMinorVersion=.3 # can be used to also select release candidate
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 # Make sure we are in the folder in which the portable Julia is installed.
@@ -92,8 +92,9 @@ if [ ! -f "$MyDepot"/config/startup.jl ] ; then
                 mkdir "$MyDepot"/config
         fi
         touch "$MyDepot"/config/startup.jl
-        # Make sure Revise is present in the default environment
+        # Make sure Revise, JuliaFormatter are present in the default environment
         julia -E 'import Pkg; Pkg.add("Revise")'
+        julia -E 'import Pkg; Pkg.add("JuliaFormatter")'
 cat<<EOF >> "$MyDepot/config/startup.jl"
 using Pkg 
 # Disable updating registry on add (still runs on up), as it is slow
@@ -160,6 +161,7 @@ if [ ! -f assets/firsttimedone ] ; then
     assets/VSCode/bin/code --install-extension nemesv.copy-file-name --force
     assets/VSCode/bin/code --install-extension PKief.material-icon-theme --force
     assets/VSCode/bin/code --install-extension johnpapa.vscode-peacock --force
+    assets/VSCode/bin/code --install-extension chunsen.bracket-select --force
     touch assets/firsttimedone
 fi
 
