@@ -18,6 +18,8 @@
 # {
 #     "terminal.integrated.allowChords": false
 # }
+# To set the window title:
+# "window.title": "${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}focus:[${focusedView}]",
 
 set -o errexit 
 set -o nounset
