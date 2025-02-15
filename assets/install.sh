@@ -23,9 +23,11 @@ set -o errexit
 set -o nounset
 
 # Select the version of julia to run
-MyPortableJuliaMajorVersion=1.10
+MyPortableJuliaMajorVersion=1.11
 MyPortableJuliaMinorVersion=.3 # can be used to also select release candidate
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
+
+echo Julia version: $MyPortableJulia
 
 # Make sure we are in the folder in which the portable Julia is installed.
 if [ ! -d "$(pwd)"/assets/$MyPortableJulia ] ; then
@@ -49,6 +51,9 @@ else
     echo "Found depot $MyDepot"
 fi
 export JULIA_DEPOT_PATH="$MyDepot"
+
+# We want to find executables in the julia depot
+export PATH=$JULIA_DEPOT_PATH/bin:$PATH
 
 # Expand the other zip files
 # if [ ! -d assets/gnuplot ] ; then
@@ -122,10 +127,10 @@ Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
 #    Pkg.instantiate()
 # end
 # Better format for floats
-using Printf 
-Base.show(io::IO, f::Float64) = @printf(io, "%1.5e", f)
-Base.show(io::IO, f::Float32) = @printf(io, "%1.5e", f)
-Base.show(io::IO, f::Float16) = @printf(io, "%1.5e", f)
+# using Printf 
+# Base.show(io::IO, f::Float64) = @printf(io, "%1.5e", f)
+# Base.show(io::IO, f::Float32) = @printf(io, "%1.5e", f)
+# Base.show(io::IO, f::Float16) = @printf(io, "%1.5e", f)
 EOF
 fi
 
@@ -156,7 +161,7 @@ if [ ! -f assets/firsttimedone ] ; then
     assets/VSCode/bin/code --install-extension alefragnani.Bookmarks --force
     assets/VSCode/bin/code --install-extension julialang.language-julia --force
     assets/VSCode/bin/code --install-extension kaiwood.center-editor-window --force
-    assets/VSCode/bin/code --install-extension stkb.rewrap --force
+    #assets/VSCode/bin/code --install-extension stkb.rewrap --force
     assets/VSCode/bin/code --install-extension yeannylam.recenter-top-bottom --force
     assets/VSCode/bin/code --install-extension nemesv.copy-file-name --force
     assets/VSCode/bin/code --install-extension PKief.material-icon-theme --force
