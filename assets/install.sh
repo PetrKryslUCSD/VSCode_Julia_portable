@@ -26,7 +26,7 @@ set -o nounset
 
 # Select the version of julia to run
 MyPortableJuliaMajorVersion=1.11
-MyPortableJuliaMinorVersion=.3 # can be used to also select release candidate
+MyPortableJuliaMinorVersion=.5 # can be used to also select release candidate
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 echo Julia version: $MyPortableJulia
