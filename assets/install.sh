@@ -25,8 +25,13 @@ set -o errexit
 set -o nounset
 
 # Select the version of julia to run
+<<<<<<< HEAD
+MyPortableJuliaMajorVersion=1.12
+MyPortableJuliaMinorVersion=.4 # can be used to also select release candidate
+=======
 MyPortableJuliaMajorVersion=1.11
 MyPortableJuliaMinorVersion=.6 # can be used to also select release candidate
+>>>>>>> d2f20e53afb35e286f18fb41d62647c948771700
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 echo Julia version: $MyPortableJulia
@@ -170,6 +175,24 @@ if [ ! -f assets/firsttimedone ] ; then
     assets/VSCode/bin/code --install-extension johnpapa.vscode-peacock --force
     assets/VSCode/bin/code --install-extension chunsen.bracket-select --force
     touch assets/firsttimedone
+fi
+
+# Make sure the Julia REPL when started activates/instantiates
+settings_file="assets/VSCode/data/user-data/User/settings.json"
+if [ ! -f $settings_file ] ; then
+        if [ ! -d `dirname $settings_file` ] ; then
+                mkdir `dirname $settings_file`
+        fi
+        touch $settings_file
+cat<<EOF >> $settings_file
+{
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
+    "window.title": "\${activeEditorShort}\${separator}\${rootName}\${separator}\${profileName}\${separator}focus:\${focusedView}",
+}
+EOF
 fi
 
 # Start VS Code
