@@ -25,13 +25,9 @@ set -o errexit
 set -o nounset
 
 # Select the version of julia to run
-<<<<<<< HEAD
 MyPortableJuliaMajorVersion=1.12
 MyPortableJuliaMinorVersion=.4 # can be used to also select release candidate
-=======
-MyPortableJuliaMajorVersion=1.11
-MyPortableJuliaMinorVersion=.6 # can be used to also select release candidate
->>>>>>> d2f20e53afb35e286f18fb41d62647c948771700
+
 MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
 
 echo Julia version: $MyPortableJulia
