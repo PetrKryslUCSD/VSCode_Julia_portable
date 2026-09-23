@@ -1,5 +1,3 @@
-#
-
 # Installation script for portable Julia with VS Code
 # version 1.1 (C) 2022-2024, Petr Krysl
 
@@ -24,77 +22,13 @@
 set -o errexit 
 set -o nounset
 
-# Select the version of julia to run
-MyPortableJuliaMajorVersion=1.12
-MyPortableJuliaMinorVersion=.6 # can be used to also select release candidate
-
-MyPortableJulia=julia-$MyPortableJuliaMajorVersion$MyPortableJuliaMinorVersion
-
-echo Julia version: $MyPortableJulia
-
-# Make sure we are in the folder in which the portable Julia is installed.
-if [ ! -d "$(pwd)"/assets/$MyPortableJulia ] ; then
-    if [ ! -f "$(pwd)"/assets/$MyPortableJulia-win64.zip ] ; then
-        echo "Downloading $MyPortableJulia"
-        curl https://julialang-s3.julialang.org/bin/winnt/x64/$MyPortableJuliaMajorVersion/$MyPortableJulia-win64.zip --output "$(pwd)"/assets/$MyPortableJulia-win64.zip
-    fi
-    cd assets
-    echo "Unzipping assets/$MyPortableJulia-win64.zip"
-    unzip -q "$(pwd)"/$MyPortableJulia-win64.zip
-    cd ..
-else
-    echo "Found $MyPortableJulia"
-fi
-
-# Locate the Julia depot in the current folder.
-export MyDepot="$(pwd)"/assets/.$MyPortableJulia-depot
-if [ ! -d "$MyDepot" ] ; then
-    mkdir "$MyDepot"
-else
-    echo "Found depot $MyDepot"
-fi
-export JULIA_DEPOT_PATH="$MyDepot"
-
-# We want to find executables in the julia depot
-export PATH=$JULIA_DEPOT_PATH/bin:$PATH
-
-# Make sure we can start Julia just by referring to the program name.
-export PATH="$(pwd)"/assets/$MyPortableJulia/bin:$PATH
-
-# Make sure we can start gnuplot just by referring to the program name.
-# export PATH="$(pwd)"/assets/gnuplot/bin:$PATH
+# Julia installation will be handled by juliaup.
+# Depot will be in standard place.
 
 # Add the Git binary
 export PATH="$(pwd)"/assets/PortableGit/bin:$PATH
 
-# Make sure the Julia REPL when started activates/instantiates
-if [ ! -f "$MyDepot"/config/startup.jl ] ; then
-        if [ ! -d "$MyDepot"/config ] ; then
-                mkdir "$MyDepot"/config
-        fi
-        touch "$MyDepot"/config/startup.jl
-        # Make sure Revise, JuliaFormatter are present in the default environment
-        julia -E 'import Pkg; Pkg.add("Revise")'
-        julia -E 'import Pkg; Pkg.add("JuliaFormatter")'
-cat<<EOF >> "$MyDepot/config/startup.jl"
-using Pkg 
-# Disable updating registry on add (still runs on up), as it is slow
-Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
-atreplinit() do repl
-    try
-        @eval using Revise
-    catch err
-        println("Error starting Revise: \$err")
-    end
-    try
-        @eval using JuliaFormatter
-    catch err
-        println("Error starting JuliaFormatter: \$err")
-    end
-end
-EOF
-fi
-
+# Now we install VS Code
 if [ ! -x "$(pwd)"/assets/VSCode/Code ] ; then
     VSCodeVersion="VSCode.zip"
     if [ ! -d assets/VSCode ] ; then
