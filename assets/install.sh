@@ -68,7 +68,7 @@ if [ ! -f assets/firsttimedone ] ; then
     touch assets/firsttimedone
 fi
 
-# Make sure the Julia REPL when started activates/instantiates
+# Make sure the vscode settings are set up to enable window titles
 settings_file="assets/VSCode/data/user-data/User/settings.json"
 if [ ! -f $settings_file ] ; then
         if [ ! -d `dirname $settings_file` ] ; then
@@ -86,6 +86,17 @@ cat<<EOF >> $settings_file
 EOF
 fi
 
+# Set up a shortcut with a good icon
+t=$(realpath.exe ./DOUBLE_CLICK_ME.bat)
+t=$(cygpath -w $t) 
+s=VSCode.lnk
+rm -f $s
+echo "Creating shortcut $s to $t"
+powershell.exe -Command "\$Shell = New-Object -ComObject WScript.Shell; \$Shortcut = \$Shell.CreateShortcut(\"$s\"); \$Shortcut.TargetPath = '$t'; \$Shortcut.IconLocation = 'assets\icons8-visual-studio-code-32.ico'; \$Shortcut.Save()" 
+echo "The shortcut may be placed in %AppData%\Microsoft\Windows\Start Menu\Programs"
+
 # Start VS Code
 echo "Starting editor"
 assets/VSCode/Code 
+ 
+
