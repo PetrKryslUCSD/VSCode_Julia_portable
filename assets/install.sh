@@ -62,9 +62,10 @@ if [ ! -f assets/firsttimedone ] ; then
     assets/VSCode/bin/code --install-extension PKief.material-icon-theme --force
     assets/VSCode/bin/code --install-extension johnpapa.vscode-peacock --force
     assets/VSCode/bin/code --install-extension chunsen.bracket-select --force
-    assets/VSCode/bin/code --install-extension pokey.command-server --force
-    assets/VSCode/bin/code --install-extension pokey.talon --force
+    # assets/VSCode/bin/code --install-extension pokey.command-server --force
+    # assets/VSCode/bin/code --install-extension pokey.talon --force
     assets/VSCode/bin/code --install-extension sleistner.vscode-fileutils --force
+    assets/VSCode/bin/code --install-extension jolars.fatou --force
     touch assets/firsttimedone
 fi
 
